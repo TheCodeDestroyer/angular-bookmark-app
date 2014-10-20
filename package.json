@@ -1,0 +1,15 @@
+{
+  "name": "angular-bookmark-app",
+  "version": "1.0.0",
+  "description": "angular-bookmark-app",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TheCodeDestroyer/angular-bookmark-app.git"
+  },
+  "author": "The Code Destroyer <the.code.destroyer@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TheCodeDestroyer/angular-bookmark-app/issues"
+  },
+  "homepage": "https://github.com/TheCodeDestroyer/angular-bookmark-app"
+}
