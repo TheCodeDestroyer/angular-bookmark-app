@@ -1,0 +1,13 @@
+<ion-tabs class="tabs-icon-top tabs-top slide-left-right {{ tabsStyleClass }}">
+    <!--<ion-tab ng-repeat="tab in tabs" title="{{ tab.title | translate }}" icon="{{ tab.icon }}" href="#/{{ tab.htmlUri }}">-->
+        <!--<ion-nav-view name="{{ tab.viewName }}"></ion-nav-view>-->
+    <!--</ion-tab>-->
+
+    <ion-tab title="{{ homeTitle | translate }}" icon="ion-home" href="#/index/home">
+        <ion-nav-view name="home-tab"></ion-nav-view>
+    </ion-tab>
+    <ion-tab title="{{ settingsTitle | translate }}" icon="ion-settings" href="#/index/settings">
+        <ion-nav-view name="settings-tab"></ion-nav-view>
+    </ion-tab>
+
+</ion-tabs>

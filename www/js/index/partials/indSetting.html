@@ -1,0 +1,13 @@
+<ion-view title="{{ viewTitle | translate }}">
+    <ion-content>
+        <div class="list">
+            <a ng-repeat="settingsMenuItem in settingsMenuItems" class="item item-icon-left pls-black-background2" ui-sref="{{ settingsMenuItem.stateUri }}">
+                <i class="icon {{ settingsMenuItem.icon }}"></i>
+                {{ settingsMenuItem.title | translate }}
+            </a>
+        </div>
+        <div class="padding row">
+            <button translate class="button button-assertive pls-block pls-center-element" ng-click="logout()">settings.LOGOUT</button>
+        </div>
+    </ion-content>
+</ion-view>
