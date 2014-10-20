@@ -1,0 +1,17 @@
+{
+  "name": "angular-bookmark-app",
+  "version": "1.0.0",
+  "homepage": "https://github.com/TheCodeDestroyer/angular-bookmark-app",
+  "authors": [
+    "TheCodeDestroyer <the.code.destroyer@gmail.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
