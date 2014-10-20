@@ -1,7 +1,7 @@
 {
   "name": "angular-bookmark-app",
   "version": "1.0.0",
-  "description": "angular-bookmark-app",
+  "description": "Bookmark mobile application written in AngularJS for PhoneGap",
   "repository": {
     "type": "git",
     "url": "https://github.com/TheCodeDestroyer/angular-bookmark-app.git"

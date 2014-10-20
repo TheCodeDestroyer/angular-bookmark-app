@@ -1,4 +1,4 @@
 angular-bookmark-app
 ====================
 
-PhoneGap application written with AngularJS
+Bookmark mobile application written in AngularJS for PhoneGap
