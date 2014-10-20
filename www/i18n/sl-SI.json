@@ -1,0 +1,39 @@
+﻿{
+    "general":
+    {
+        "OK": "OK",
+        "CANCEL": "Prekliči",
+        "BACK": "Nazaj",
+        "SELECT": "Select",
+        "ADD": "Dodaj",
+        "NEW": "Now",
+        "OPEN": "Odpri",
+        "SEARCH": "Išči",
+        "CLEAR": "Zbriši",
+        "ERROR_TITLE": "Napaka",
+        "ERROR_MESSAGE": "Zgodila se je napaka. Prosim kontaktiraj tehnično pomoč.",
+        "languages":{
+            "ENGLISH": "angleško",
+            "SLOVENIAN": "slovensko"
+        }
+    },
+    "login":{
+        "TITLE": "Prijava",
+        "LOGIN": "Prijavi se",
+        "SETTINGS": "Nastavitve",
+        "CLOSE": "Zapri",
+        "USERNAME": "UPORABNIŠKO IME",
+        "PASSWORD": "GESLO",
+        "LOGIN_MESSAGE": "Prosim prijavi se"
+    },
+    "settings":{
+        "SAVE": "Shrani",
+        "CANCEL": "Prekliči",
+        "LANGUAGE": "Jezik",
+        "LOGOUT": "Odjava",
+        "application": {
+            "TITLE": "Nastavitve aplikacije"
+        }
+    }
+
+}
