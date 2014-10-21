@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html id="ng-app" ng-app="ba">
-    <head>
+    <head ng-controller="cmnMetaCtrl">
         <meta charset="utf-8" />
         <meta name="format-detection" content="telephone=no" />
         <meta name="msapplication-tap-highlight" content="no" />
@@ -11,14 +11,15 @@
     <body ng-cloak>
 
 
-        <script src="lib/ionic/release/js/ionic.bundle.js"></script>
+
+        <ion-nav-view animation="slide-left-right"></ion-nav-view>
+
+        <script src="lib/ionic/js/ionic.bundle.js"></script>
         <!--ANGULAR-->
         <script src="lib/angular-cookies/angular-cookies.js"></script>
-
         <!--PHONEGAP-->
         <script src="lib/ngCordova/dist/ng-cordova.js"></script>
         <script src="phonegap.js"></script>
-
         <!--JQUERY-->
         <script src="lib/jquery/dist/jquery.js"></script>
         <!--ANGULAR-TRANSLATE-->
@@ -30,5 +31,20 @@
         <script src="lib/ngstorage/ngStorage.js"></script>
         <!--APP-->
         <script src="js/app.js"></script>
+        <!--index-->
+        <script src="js/main/controllers/mnMainCtrl.js"></script>
+        <script src="js/main/controllers/mnHomeCtrl.js"></script>
+        <!--settings-->
+        <script src="js/settings/controllers/setApplicationCtrl.js"></script>
+        <!--login-->
+        <script src="js/login/controllers/liAuthenticationCtrl.js"></script>
+        <!--common-->
+        <script src="js/common/controllers/cmnMetaCtrl.js"></script>
+        <!--SERVICES-->
+        <script src="js/common/services/cmnAuthenticationSvc.js"></script>
+        <script src="js/common/services/cmnSessionSvc.js"></script>
+        <script src="js/common/services/cmnSettingsSvc.js"></script>
+        <script src="js/common/services/cmnParseDataSvc.js"></script>
+        <script src="js/main/services/mnBookmarkSvc.js"></script>
     </body>
 </html>
