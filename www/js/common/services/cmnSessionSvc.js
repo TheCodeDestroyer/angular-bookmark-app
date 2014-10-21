@@ -1,14 +1,14 @@
 angular.module('ba.services').service('cmnSessionSvc', function () {
 
-    function create(userId, username, sessionId, userRole) {
-        this.id = sessionId;
-        this.userId = userId;
+    function create(accountId, username, sessionId) {
+        this.sessionId = sessionId;
+        this.accountId = accountId;
         this.username = username;
     }
 
     function destroy() {
         this.id = null;
-        this.userId = null;
+        this.accountId = null;
         this.username = null;
     }
     return {

@@ -1,6 +1,6 @@
 angular.module('ba.controllers')
-    .controller('liAuthenticationCtrl', ['$scope', '$translate', 'cmnAuthenticationSvc', '$localStorage', '$cordovaNetwork', '$cordovaToast',
-        function($scope, $translate, cmnAuthenticationSvc, $localStorage, $cordovaNetwork, $cordovaToast) {
+    .controller('liAuthenticationCtrl', ['$scope', '$translate', 'cmnAuthenticationSvc', '$localStorage', '$cordovaToast', '$state',
+        function($scope, $translate, cmnAuthenticationSvc, $localStorage, $cordovaToast, $state) {
             'use strict';
 
             $scope.viewTitle = $translate.instant('login.TITLE');
@@ -21,25 +21,24 @@ angular.module('ba.controllers')
 
                 $localStorage.cachedCredentials.username = user.username;
                 $localStorage.cachedCredentials.warehouseCode = user.warehouseCode;
-                var isOnline = true;
-                if (isOnline) {
-                    var loginPromise = cmnAuthenticationSvc.login(user);
-                    if (!loginPromise) {
-                        if (window.device) {
-                            $cordovaToast.show('You need to enter API URL before you can log in.', 'long', 'center');
-                        }
-                        return;
+                var loginPromise = cmnAuthenticationSvc.login(user);
+                if (!loginPromise) {
+                    if (window.device) {
+                        $cordovaToast.show('You need to enter API URL before you can log in.', 'long', 'center');
                     }
-                    loginPromise.then(function () {
-
-                    }, function () {
+                    return;
+                }
+                loginPromise.then(function () {
+                    $state.go('main.home');
+                }, function () {
+                    if (window.device) {
                         $cordovaToast.show('Something went wrong during log in. Please try again in few moments.', 'long', 'center');
-                    });
-                }
-                else {
+                    }
+                });
+            };
 
-                }
-
+            $scope.settings = function () {
+                $state.go('liApplicationSettings');
             };
 
             $scope.isUnchanged = function(user) {

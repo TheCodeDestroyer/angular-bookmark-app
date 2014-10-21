@@ -1,5 +1,5 @@
-angular.module('ba.controllers').controller('setApplicationCtrl', ['$scope', '$translate', '$cordovaDevice', 'cmnSettingsSvc',
-    function($scope, $translate, $cordovaDevice, cmnSettingsSvc) {
+angular.module('ba.controllers').controller('setApplicationCtrl', ['$scope', '$translate', '$cordovaDevice', 'cmnSettingsSvc', '$state',
+    function($scope, $translate, $cordovaDevice, cmnSettingsSvc, $state) {
         'use strict';
 
         $scope.viewTitle = $translate.instant('settings.application.TITLE');
@@ -37,6 +37,7 @@ angular.module('ba.controllers').controller('setApplicationCtrl', ['$scope', '$t
         $scope.saveSettings = function () {
             $translate.use($scope.setAppModel.selectedLanguage);
             cmnSettingsSvc.save($scope.setAppModel.userSettings);
+            $state.go('main.home');
         };
 
         $scope.setAppModel.selectedLanguage = $scope.languages.filter(function (object) {

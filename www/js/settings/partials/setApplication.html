@@ -1,9 +1,9 @@
 <ion-view title="{{ viewTitle | translate }}">
-    <ion-content class="pls-black-background">
+    <ion-content class="ba-black-background">
         <div class="list">
             <label class="item item-input item-stacked-label">
                 <span translate class="input-label">Device name</span>
-                <input disabled type="text" ng-model="deviceData.platform">
+                <input disabled type="text" ng-model="deviceData.device">
             </label>
             <label class="item item-input item-stacked-label">
                 <span translate class="input-label">Platform</span>
@@ -32,7 +32,7 @@
         </div>
         <div class="padding row">
             <div class="col col-33 col-offset-33">
-                <button translate class="button button-positive pls-center-element" ng-click="saveSettings()">settings.SAVE</button>
+                <button translate class="button button-positive ba-center-element" ng-click="saveSettings()">settings.SAVE</button>
             </div>
         </div>
     </ion-content>

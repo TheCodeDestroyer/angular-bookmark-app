@@ -10,28 +10,41 @@ angular.module('ba.services').factory('cmnAuthenticationSvc', ['$http', 'cmnSess
             return undefined;
         }
 
+        credentials.workspace = 'Calcit';
+        credentials.client = 'API-TEST';
+
         return $http
             .post(apiUrl + '/login', credentials)
             .then(function (response) {
                 var userData = response.data;
-                cmnSessionSvc.create(userData.id, userData.username, userData.sessionId );
+                cmnSessionSvc.create(userData.accountId, userData.username, userData.sessionId );
+            });
+    }
+
+    function logout() {
+
+        var settings = cmnSettingsSvc.get();
+        var apiUrl = settings.apiUrl;
+
+        if (!apiUrl && apiUrl === '') {
+            return undefined;
+        }
+
+        return $http
+            .delete(apiUrl + '/login', { headers: { 'Authorization': cmnSessionSvc.sessionId }})
+            .then(function (response) {
+                var userData = response.data;
+                cmnSessionSvc.create(userData.accountId, userData.username, userData.sessionId );
             });
     }
 
     function isAuthenticated () {
-        return !!cmnSessionSvc.userId;
-    }
-
-    function isAuthorized (authorizedRoles) {
-        if (!angular.isArray(authorizedRoles)) {
-            authorizedRoles = [authorizedRoles];
-        }
-        return (isAuthenticated() && authorizedRoles.indexOf(cmnSessionSvc.userRole) !== -1);
+        return !!cmnSessionSvc.sessionId;
     }
 
     return {
         login: login,
-        isAuthenticated: isAuthenticated,
-        isAuthorized: isAuthorized
+        logout: logout,
+        isAuthenticated: isAuthenticated
     };
 }]);

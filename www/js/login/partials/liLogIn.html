@@ -1,39 +1,33 @@
+<ion-nav-bar class="bar-dark nav-title-slide"></ion-nav-bar>
 <ion-view title="{{ viewTitle | translate }}">
-    <ion-content overflow-scroll="true" class="pls-cool-background">
-        <div class="padding pls-center-element">
-            <p translate class="pls-center-text">login.WELCOME</p>
-        </div>
-        <div class="padding row">
-            <div class="col col-33 col-offset-33">
-                <p translate class="pls-center-text">login.LOGIN_MESSAGE</p>
+    <ion-content overflow-scroll="false" class="ba-cool-background">
+            <div class="padding row">
+                <div class="col col-33 col-offset-33">
+                    <p translate class="ba-center-text">login.LOGIN_MESSAGE</p>
+                </div>
             </div>
-        </div>
-        <div class="list">
-            <label class="item item-input item-stacked-label">
-                <span translate class="input-label">login.USERNAME</span>
-                <input type="text" ng-model="user.username">
-            </label>
-            <label class="item item-input item-stacked-label">
-                <span translate class="input-label">login.PASSWORD</span>
-                <input type="password" ng-model="user.password">
-            </label>
-            <label class="item item-input item-stacked-label">
-                <span translate class="input-label">login.WAREHOUSE_CODE</span>
-                <input type="text" ng-model="user.warehouseCode">
-            </label>
-        </div>
-        <div class="padding row">
-            <div class="col col-33 col-offset-33">
-                <button translate class="button button-positive pls-center-element" ng-click="login(user)">login.LOGIN</button>
+            <div class="list">
+                <label class="item item-input item-stacked-label">
+                    <span translate class="input-label">login.USERNAME</span>
+                    <input type="text" ng-model="user.username">
+                </label>
+                <label class="item item-input item-stacked-label">
+                    <span translate class="input-label">login.PASSWORD</span>
+                    <input type="password" ng-model="user.password">
+                </label>
             </div>
-        </div>
-        <div class="padding row">
-            <div class="col col-33">
-                <button translate class="button button-balanced" ng-click="">login.SETTINGS</button>
+            <div class="padding row">
+                <div class="col col-33 col-offset-33">
+                    <button translate class="button button-positive ba-center-element" ng-click="login(user)">login.LOGIN</button>
+                </div>
             </div>
-            <div class="col col-33 col-offset-33">
-                <button translate class="button button-assertive pls-pull-right" ng-click="">login.CLOSE</button>
+            <div class="padding row">
+                <div class="col col-33">
+                    <button translate class="button button-balanced" ng-click="settings()">login.SETTINGS</button>
+                </div>
+                <div class="col col-33 col-offset-33">
+                    <button translate type="submit" class="button button-assertive ba-pull-right" ng-click="login(user)">login.CLOSE</button>
+                </div>
             </div>
-        </div>
     </ion-content>
 </ion-view>
