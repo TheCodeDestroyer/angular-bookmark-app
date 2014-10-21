@@ -1,0 +1,57 @@
+body{
+	color: #FFF;
+}
+
+p{
+	color: #fff;
+}
+
+/*IONIC*/
+
+input {
+	width: 99%;
+	text-align: center;
+}
+
+input[disabled] {
+	background-color: #000;
+	color: #fff;
+}
+
+.ba-list .item {
+	color: #000;
+}
+
+select option {
+	color: #000;
+}
+
+.input-label {
+	color: #FFF;
+}
+
+.popup {
+	background: #000;
+}
+
+.popup-title, .popup-sub-title {
+	color: #FFF;
+}
+
+ion-content input[disabled] {
+	background-color: transparent;
+	color: #fff;
+}
+
+ion-content {
+	background-color: #000;
+}
+
+.item-select {
+	background-color: transparent;
+}
+
+.item-select select{
+	color: #fff;
+	background-color: transparent;
+}

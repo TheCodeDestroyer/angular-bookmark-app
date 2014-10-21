@@ -1,0 +1,59 @@
+/* prevent the Angular html template from being briefly displayed */
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+    display: none !important;
+}
+
+body{
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.ba-pull-right {
+	float: right;
+}
+
+.ba-cool-background {
+
+    background-image: -webkit-gradient(linear, left top,right bottom, color-stop(1, #0C5D6A), color-stop(1, #27798A));
+    background: #0C5D6A; /* Old browsers */
+    background: -moz-radial-gradient(center, ellipse cover, #27798A 0%, #0C5D6A 100%); /* FF3.6+ */
+    background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#27798A), color-stop(100%,#0C5D6A)); /* Chrome,Safari4+ */
+    background: -webkit-radial-gradient(center, ellipse cover, #27798A 0%,#0C5D6A 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-radial-gradient(center, ellipse cover, #27798A 0%,#0C5D6A 100%); /* Opera 12+ */
+    background: -ms-radial-gradient(center, ellipse cover, #27798A 0%,#0C5D6A 100%); /* IE10+ */
+    background: radial-gradient(ellipse at center, #27798A 0%,#0C5D6A 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#27798A', endColorstr='#0C5D6A',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+}
+
+.ba-black-background {
+	background: none;
+
+	background: #000; /* Old browsers */
+	background: -moz-radial-gradient(center, ellipse cover, #7d7e7d 0%, #000 100%); /* FF3.6+ */
+	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#7d7e7d), color-stop(100%,#000)); /* Chrome,Safari4+ */
+	background: -webkit-radial-gradient(center, ellipse cover, #7d7e7d 0%,#000 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-radial-gradient(center, ellipse cover, #7d7e7d 0%,#000 100%); /* Opera 12+ */
+	background: -ms-radial-gradient(center, ellipse cover, #7d7e7d 0%,#000 100%); /* IE10+ */
+	background: radial-gradient(ellipse at center, #7d7e7d 0%,#000 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7d7e7d', endColorstr='#000',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+
+.ba-black-background2 {
+    background-color: #000;
+}
+
+.ba-center-text
+{
+    text-align: center;
+}
+
+.ba-center-element
+{
+	display: block;
+    margin-right: auto;
+    margin-left: auto;
+}
