@@ -57,3 +57,13 @@ body{
     margin-right: auto;
     margin-left: auto;
 }
+
+.wide-as-needed {
+	overflow: scroll;
+	white-space: nowrap;
+}
+
+.scroll {
+	min-width: 100%;
+	min-height: 100%;
+}

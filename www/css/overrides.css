@@ -9,7 +9,7 @@ p{
 /*IONIC*/
 
 input {
-	width: 99%;
+	width: 96%;
 	text-align: center;
 }
 
@@ -61,6 +61,10 @@ ion-content {
 .gridStyle {
 	height: 100%;
 }
+
+/*.ngViewport {*/
+	/*min-height: 400px;*/
+/*}*/
 
 .ngHeaderContainer, .ngGroupPanel {
 	background-color: #000;

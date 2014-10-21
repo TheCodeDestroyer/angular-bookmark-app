@@ -3,15 +3,17 @@ angular.module('ba.controllers').controller('mnMainCtrl', ['$scope', '$translate
         'use strict';
 
         $scope.viewTitle = $translate.instant('home.TITLE');
-        var gridLayoutPlugin = new ngGridLayoutPlugin();
+        var gridFlexibleHeightPlugin = new ngGridFlexibleHeightPlugin();
         $scope.bookmarkItems = [];
         $scope.gridData = {};
         $scope.columns = {};
         $scope.gridOptions = {
             data: 'gridData',
             multiSelect: false,
+            showColumnMenu: true,
+            showFilter: true,
             selectedItems: [],
-            plugins: [gridLayoutPlugin],
+            plugins: [gridFlexibleHeightPlugin],
             filterOptions: { filterText: '', useExternalFilter: false },
             columnDefs: 'columns'
         };
@@ -76,7 +78,9 @@ angular.module('ba.controllers').controller('mnMainCtrl', ['$scope', '$translate
                     }
                     bookmarkModelPromise.then(function(response){
                         var gridModel = cmnParseDataSvc.parseBookmarkModel(response.data);
-                        setupGridAndChart(gridModel);
+                        if (gridModel) {
+                            setupGridAndChart(gridModel);
+                        }
                     })
                 }
             })
@@ -154,13 +158,6 @@ angular.module('ba.controllers').controller('mnMainCtrl', ['$scope', '$translate
                 }
             });
         };
-
-        //TODO: This should be in a directive, but just for the sake of this being a test application it can remain here
-        $scope.$watch('menuContent', function(newVal, oldVal) {
-            if (newVal !== undefined && newVal !== oldVal) {
-                gridLayoutPlugin.updateGridLayout();
-            }
-        });
 
     }
 ]);

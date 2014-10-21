@@ -25,6 +25,7 @@ angular.module('ba.services').service('cmnParseDataSvc', function () {
     }
 
     function parseBookmarkModel(model){
+        if (model.rows.length <= 0) return undefined;
 
         var columns = [];
         var columnModel = model.rows.shift();
