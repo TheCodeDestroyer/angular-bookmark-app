@@ -55,3 +55,62 @@ ion-content {
 	color: #fff;
 	background-color: transparent;
 }
+
+/*NG-GRID*/
+
+.gridStyle {
+	height: 100%;
+}
+
+.ngHeaderContainer, .ngGroupPanel {
+	background-color: #000;
+	border-bottom: 1px solid #fff;
+	color: #33b5e5;
+}
+
+.ngRow.odd {
+	background-color: #222222;
+}
+
+.ngRow.even {
+	background-color: #616161;
+}
+
+.ngRow.selected {
+	background-color: #33b5e5;
+}
+
+.ngCellText {
+	font-size: 15px;
+}
+
+.ngVerticalBarVisible {
+	height: 100%;
+}
+
+.ngSortButtonDown, .ngSortButtonUp {
+	border-color: #33b5e5 transparent;
+	top: 12px;
+	left: auto;
+	right: 30px;
+	margin-left: 0;
+	margin-right: 0;
+}
+
+.ngHeaderButton {
+	background-color: #33b5e5;
+	width: 24px;
+	height: 24px;
+	right: 2px;
+	top: 2px;
+}
+
+.ngHeaderButtonArrow {
+	border-color: #000 transparent transparent transparent;
+	border-width: 13px 9px 0 9px;
+	top: 6px;
+}
+
+.ngColMenu {
+	background-color: #000;
+}

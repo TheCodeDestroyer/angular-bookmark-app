@@ -9,7 +9,9 @@ angular.module('ba', [
     'pascalprecht.translate',
     'ngStorage',
     'ngCordova',
+    'ngGrid',
     'ionic',
+    'highcharts-ng',
     'ba.filters',
     'ba.services',
     'ba.directives',
@@ -29,14 +31,19 @@ angular.module('ba', [
         $stateProvider.state('liApplicationSettings', {url: '/login/settings', templateUrl: 'js/settings/partials/setApplication.html', controller: 'setApplicationCtrl', requireLogin: false});
         $stateProvider.state('main', {url: '/index', abstract: true, templateUrl: 'js/main/partials/mnMain.html', controller: 'mnMainCtrl'});
 
-        $stateProvider.state('main.home', {url: '/home', views: {
+        $stateProvider.state('main.grid', {url: '/grid', views: {
             'menuContent':{
-                templateUrl: 'js/main/partials/mnHome.html',
-                controller: 'mnHomeCtrl'
+                templateUrl: 'js/main/partials/mnGrid.html'
             }
         }});
 
-        $urlRouterProvider.otherwise('/index/home');
+        $stateProvider.state('main.chart', {url: '/chart', views: {
+            'menuContent':{
+                templateUrl: 'js/main/partials/mnChart.html'
+            }
+        }});
+
+        $urlRouterProvider.otherwise('/index/grid');
     }]).
     run(['$rootScope', 'cmnAuthenticationSvc', '$state', function($rootScope, cmnAuthenticationSvc, $state){
         'use strict';

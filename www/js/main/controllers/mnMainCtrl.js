@@ -1,8 +1,34 @@
-angular.module('ba.controllers').controller('mnMainCtrl', ['$scope', '$translate', 'mnBookmarkSvc', 'cmnParseDataSvc', '$ionicSideMenuDelegate', '$cordovaToast',
-    function($scope, $translate, mnBookmarkSvc, cmnParseDataSvc, $ionicSideMenuDelegate, $cordovaToast) {
+angular.module('ba.controllers').controller('mnMainCtrl', ['$scope', '$translate', '$state', 'mnBookmarkSvc', 'cmnParseDataSvc', '$ionicSideMenuDelegate', '$cordovaToast', '$ionicActionSheet',
+    function($scope, $translate, $state, mnBookmarkSvc, cmnParseDataSvc, $ionicSideMenuDelegate, $cordovaToast, $ionicActionSheet) {
         'use strict';
 
+        $scope.viewTitle = $translate.instant('home.TITLE');
+        var gridLayoutPlugin = new ngGridLayoutPlugin();
         $scope.bookmarkItems = [];
+        $scope.gridData = {};
+        $scope.columns = {};
+        $scope.gridOptions = {
+            data: 'gridData',
+            multiSelect: false,
+            selectedItems: [],
+            plugins: [gridLayoutPlugin],
+            filterOptions: { filterText: '', useExternalFilter: false },
+            columnDefs: 'columns'
+        };
+
+        var coreHighchartsConfig = {
+            options: {
+                chart: {
+                    type: 'column'
+                },
+                tooltip: {
+                    style: {
+                        padding: 10,
+                        fontWeight: 'bold'
+                    }
+                }
+            }
+        };
 
         var bookmarkPromise = mnBookmarkSvc.getBookmarks();
         if (!bookmarkPromise) {
@@ -14,6 +40,7 @@ angular.module('ba.controllers').controller('mnMainCtrl', ['$scope', '$translate
         bookmarkPromise.then(function (response) {
             cmnParseDataSvc.parseBookmarkList(response.data, function (parsedData){
                 $scope.bookmarkItems = parsedData;
+                $scope.setBookmark(parsedData[4].id);
             });
         }, function () {
             if (window.device) {
@@ -49,33 +76,51 @@ angular.module('ba.controllers').controller('mnMainCtrl', ['$scope', '$translate
                     }
                     bookmarkModelPromise.then(function(response){
                         var gridModel = cmnParseDataSvc.parseBookmarkModel(response.data);
-                        setupGrid(gridModel);
+                        setupGridAndChart(gridModel);
                     })
                 }
             })
         };
 
-        function setupGrid(gridModel) {
+        function setupGridAndChart(gridModel) {
 
             $scope.gridData = gridModel.data;
 
-            $scope.gridOptions = {
-                data: 'gridData',
-                multiSelect: false,
-                showColumnMenu: true,
-                showFilter: true,
-                selectedItems: [],
-                filterOptions: { filterText: '', useExternalFilter: false },
-                columnDefs: [
-                    { field: 'id', visible:false , displayName: $translate.instant('fixed_asset.inventory_and_review.grid.ID') },
-                    { field: 'serial', displayName: $translate.instant('fixed_asset.inventory_and_review.grid.SERIAL'), width: 120 },
-                    { field: 'code', displayName: $translate.instant('fixed_asset.inventory_and_review.grid.CODE'), width: 120 },
-                    { field: 'title', displayName: $translate.instant('fixed_asset.inventory_and_review.grid.TITLE'), width: 120 },
-                    { field: 'inventoryNumber', displayName: $translate.instant('fixed_asset.inventory_and_review.grid.INVENTORY_NUMBER'), width: 120 },
-                    { field: 'recipientCode', displayName: $translate.instant('fixed_asset.inventory_and_review.grid.RECIPIENT_CODE'), width: 120 },
-                    { field: 'recipient', displayName: $translate.instant('fixed_asset.inventory_and_review.grid.RECIPIENT'), width: 120 }
-                ]
-            };
+            $scope.columns = gridModel.columnModel;
+
+
+            //TODO: Mind rape in 3, 2 ,1 ...
+            var categories = [];
+
+            for (var j = 0; j < gridModel.data.length; j++ ) {
+                categories.push(gridModel.data[j].cell0);
+            }
+
+            var config = coreHighchartsConfig;
+            config.series = [];
+            config.xAxis = { categories: categories };
+
+            var series = [];
+            for (var i = 0; i < gridModel.data.length; i++) {
+                var k = 0;
+                for (var prop in gridModel.data[i]) {
+                    if (k > 0) {
+                        if (!series[k-1]) {
+                            series[k-1] = {name: gridModel.columnModel[k].displayName, data: []};
+                        }
+                        series[k-1].data.push(parseFloat(gridModel.data[i][prop]));
+                    }
+                    k++;
+                }
+            }
+
+            config.series = series;
+
+            $scope.highchartsConfig = config;
+
+            if(!$scope.$$phase) {
+                $scope.$apply();
+            }
         }
 
         $scope.checkIfParent = function (bookmark) {
@@ -85,6 +130,37 @@ angular.module('ba.controllers').controller('mnMainCtrl', ['$scope', '$translate
         $scope.toggleLeft = function() {
             $ionicSideMenuDelegate.toggleLeft();
         };
+
+        $scope.showActionSheet = function () {
+
+            // Show the action sheet
+            $ionicActionSheet.show({
+                buttons: [
+                    { text: 'Show Chart' },
+                    { text: 'Show Grid' }
+                ],
+                titleText: 'Actions',
+                cancelText: 'Cancel',
+                cancel: function () {
+                    // add cancel code..
+                },
+                buttonClicked: function (index) {
+                    if (this.buttons[index].text === "Show Chart") {
+                        $state.go('main.chart');
+                    }
+                    else if(this.buttons[index].text === "Show Grid") {
+                        $state.go('main.grid');
+                    }
+                }
+            });
+        };
+
+        //TODO: This should be in a directive, but just for the sake of this being a test application it can remain here
+        $scope.$watch('menuContent', function(newVal, oldVal) {
+            if (newVal !== undefined && newVal !== oldVal) {
+                gridLayoutPlugin.updateGridLayout();
+            }
+        });
 
     }
 ]);

@@ -29,7 +29,7 @@ angular.module('ba.controllers')
                     return;
                 }
                 loginPromise.then(function () {
-                    $state.go('main.home');
+                    $state.go('main.grid');
                 }, function () {
                     if (window.device) {
                         $cordovaToast.show('Something went wrong during log in. Please try again in few moments.', 'long', 'center');

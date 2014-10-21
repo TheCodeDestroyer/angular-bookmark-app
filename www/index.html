@@ -4,13 +4,11 @@
         <meta charset="utf-8" />
         <meta name="format-detection" content="telephone=no" />
         <meta name="msapplication-tap-highlight" content="no" />
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
         <title>Bookmark App</title>
         <link ng-repeat="stylesheet in stylesheets" ng-href="{{ stylesheet.href }}" type="{{ stylesheet.type }}" rel="stylesheet" />
     </head>
     <body ng-cloak>
-
-
 
         <ion-nav-view animation="slide-left-right"></ion-nav-view>
 
@@ -22,6 +20,9 @@
         <script src="phonegap.js"></script>
         <!--JQUERY-->
         <script src="lib/jquery/dist/jquery.js"></script>
+        <!--HIGHCHARTS-->
+        <script src="lib/highcharts/highcharts.js"></script>
+        <script src="lib/highcharts-ng/dist/highcharts-ng.js"></script>
         <!--ANGULAR-TRANSLATE-->
         <script src="lib/angular-translate/angular-translate.js"></script>
         <script src="lib/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
@@ -29,11 +30,14 @@
         <script src="lib/angular-translate-storage-local/angular-translate-storage-local.js"></script>
         <!--ANGULAR-STORAGE-->
         <script src="lib/ngstorage/ngStorage.js"></script>
+        <!--NG-GRID-->
+        <script src="lib/ng-grid/build/ng-grid.debug.js"></script>
+        <script src="lib/ng-grid/plugins/ng-grid-layout.js"></script>
+        <script src="lib/ng-grid/plugins/ng-grid-pdf-export.js"></script>
         <!--APP-->
         <script src="js/app.js"></script>
         <!--index-->
         <script src="js/main/controllers/mnMainCtrl.js"></script>
-        <script src="js/main/controllers/mnHomeCtrl.js"></script>
         <!--settings-->
         <script src="js/settings/controllers/setApplicationCtrl.js"></script>
         <!--login-->

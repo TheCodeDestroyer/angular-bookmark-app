@@ -17,6 +17,9 @@
             "SLOVENIAN": "Slovenian"
         }
     },
+    "home":{
+        "TITLE": "Home"
+    },
     "login":{
         "TITLE": "Log In",
         "LOGIN": "Log In",

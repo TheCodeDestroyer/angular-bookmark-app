@@ -30,7 +30,7 @@ angular.module('ba.services').service('cmnParseDataSvc', function () {
         var columnModel = model.rows.shift();
         for (var i = 0; i < columnModel.length; i++ ) {
             var column = columnModel[i];
-            columns.push({displayName: column.stringValue, columnSpan: column.columnSpan, rowSpan: column.rowSpan });
+            columns.push({displayName: column.stringValue, field: 'cell' + i, width: 250 });
         }
 
         var rowData = [];
@@ -40,7 +40,7 @@ angular.module('ba.services').service('cmnParseDataSvc', function () {
             var cellData = {};
             for (var k = 0; k < rowDataModel.length; k++ ) {
                 var cellModel = rowDataModel[k];
-                cellData["cell" + k] = cellModel.doubleValue ? cellModel.doubleValue : cellModel.stringValue;
+                cellData["cell" + k] = cellModel.stringValue;
             }
             rowData.push(cellData)
         }
