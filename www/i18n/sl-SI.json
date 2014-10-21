@@ -26,6 +26,9 @@
         "PASSWORD": "GESLO",
         "LOGIN_MESSAGE": "Prosim prijavi se"
     },
+    "sideMenu": {
+        "TITLE": "Zaznamki"
+    },
     "settings":{
         "SAVE": "Shrani",
         "CANCEL": "Prekliči",
