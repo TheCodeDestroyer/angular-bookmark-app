@@ -1,6 +1,7 @@
 <ion-nav-bar class="bar-dark nav-title-slide"></ion-nav-bar>
 <ion-view title="{{ viewTitle | translate }}">
     <ion-content overflow-scroll="false" class="ba-black-background">
+        <form ng-submit="login(user)">
             <div class="padding row">
                 <div class="col col-33 col-offset-33">
                     <p translate class="ba-center-text">login.LOGIN_MESSAGE</p>
@@ -18,7 +19,7 @@
             </div>
             <div class="padding row">
                 <div class="col col-33 col-offset-33">
-                    <button translate type="submit" class="button button-positive ba-center-element" ng-click="login(user)">login.LOGIN</button>
+                    <button translate type="submit" class="button button-positive ba-center-element">login.LOGIN</button>
                 </div>
             </div>
             <div class="padding row">
@@ -29,5 +30,6 @@
                     <button translate class="button button-assertive ba-pull-right" ng-click="close()">login.CLOSE</button>
                 </div>
             </div>
+        </form>
     </ion-content>
 </ion-view>

@@ -1,43 +1,25 @@
 <ion-nav-bar class="bar-dark nav-title-slide"></ion-nav-bar>
 <ion-view title="{{ viewTitle | translate }}">
     <ion-content class="ba-black-background">
-        <div class="list">
-            <label class="item item-input item-stacked-label">
-                <span translate class="input-label">Device name</span>
-                <input disabled type="text" ng-model="deviceData.device">
-            </label>
-            <label class="item item-input item-stacked-label">
-                <span translate class="input-label">Platform</span>
-                <input disabled type="text" ng-model="deviceData.platform">
-            </label>
-            <label class="item item-input item-stacked-label">
-                <span translate class="input-label">Version</span>
-                <input disabled type="text" ng-model="deviceData.version">
-            </label>
-            <label class="item item-input item-stacked-label">
-                <span translate class="input-label">Model</span>
-                <input disabled type="text" ng-model="deviceData.model">
-            </label>
-            <label class="item item-input item-stacked-label">
-                <span translate class="input-label">UUID</span>
-                <input disabled type="text" ng-model="deviceData.uuid">
-            </label>
-            <label class="item item-input item-select">
-                <span translate class="input-label">settings.LANGUAGE</span>
-                <select ng-model="setAppModel.selectedLanguage" ng-options="language.value as language.name for language in languages"></select>
-            </label>
-            <label class="item item-input item-stacked-label">
-                <span translate class="input-label">Server Address</span>
-                <input type="text" ng-model="setAppModel.userSettings.apiUrl">
-            </label>
-        </div>
-        <div class="padding row">
-            <div class="col col-33">
-                <button translate class="button button-positive ba-center-element" ng-click="saveSettings()">settings.SAVE</button>
+        <form ng-submit="saveSettings()">
+            <div class="list">
+                <label class="item item-input item-select">
+                    <span translate class="input-label">settings.LANGUAGE</span>
+                    <select ng-model="setAppModel.selectedLanguage" ng-options="language.value as language.name for language in languages"></select>
+                </label>
+                <label class="item item-input item-stacked-label">
+                    <span translate class="input-label">Server Address</span>
+                    <input type="text" ng-model="setAppModel.userSettings.apiUrl">
+                </label>
             </div>
-            <div class="col col-33 col-offset-33">
-                <button translate class="button button-assertive ba-center-element" ng-click="cancel()">settings.CANCEL</button>
+            <div class="padding row">
+                <div class="col col-33">
+                    <button translate type="submit" class="button button-positive ba-center-element">settings.SAVE</button>
+                </div>
+                <div class="col col-33 col-offset-33">
+                    <button translate class="button button-assertive ba-center-element" ng-click="cancel()">settings.CANCEL</button>
+                </div>
             </div>
-        </div>
+        </form>
     </ion-content>
 </ion-view>
