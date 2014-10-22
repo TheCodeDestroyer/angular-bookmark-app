@@ -29,6 +29,9 @@ angular.module('ba.controllers').controller('mnMainCtrl', ['$scope', '$translate
                         padding: 10,
                         fontWeight: 'bold'
                     }
+                },
+                title:{
+                    text: null
                 }
             }
         };
@@ -122,16 +125,17 @@ angular.module('ba.controllers').controller('mnMainCtrl', ['$scope', '$translate
 
         $scope.logout = function () {
             var confirmPopup = cmnIonicHelpersSvc.confirm($translate.instant('login.LOGOUT'), $translate.instant('login.LOGOUT_TEXT'));
-            confirmPopup.then(function () {
-                cmnAuthenticationSvc.logout().then(function () {
-                    $state.go('login');
-                });
+            confirmPopup.then(function (res) {
+                if(res) {
+                    cmnAuthenticationSvc.logout().then(function () {
+                        $state.go('login');
+                    });
+                }
             });
         };
 
         $scope.showActionSheet = function () {
 
-            // Show the action sheet
             var hideSheet = $ionicActionSheet.show({
                 buttons: [
                     { text: $translate.instant('action_sheet.SHOW_GRID') },
@@ -141,9 +145,6 @@ angular.module('ba.controllers').controller('mnMainCtrl', ['$scope', '$translate
                 ],
                 titleText: 'Actions',
                 cancelText: 'Cancel',
-                cancel: function () {
-                    // add cancel code..
-                },
                 buttonClicked: function (index) {
                     if (index === 0) {
                         $state.go('main.grid');
