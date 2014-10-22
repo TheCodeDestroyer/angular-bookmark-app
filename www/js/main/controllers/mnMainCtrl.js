@@ -22,7 +22,7 @@ angular.module('ba.controllers').controller('mnMainCtrl', ['$scope', '$translate
         var coreHighchartsConfig = {
             options: {
                 chart: {
-                    type: 'column'
+                    type: 'columns'
                 },
                 tooltip: {
                     style: {
@@ -134,8 +134,10 @@ angular.module('ba.controllers').controller('mnMainCtrl', ['$scope', '$translate
             // Show the action sheet
             $ionicActionSheet.show({
                 buttons: [
-                    { text: $translate.instant('action_sheet.SHOW_CHART') },
-                    { text: $translate.instant('action_sheet.SHOW_GRID') }
+                    { text: $translate.instant('action_sheet.SHOW_GRID') },
+                    { text: $translate.instant('action_sheet.SHOW_COLUMN_CHART') },
+                    { text: $translate.instant('action_sheet.SHOW_BAR_CHART') },
+                    { text: $translate.instant('action_sheet.SHOW_LINE_CHART') }
                 ],
                 titleText: 'Actions',
                 cancelText: 'Cancel',
@@ -144,10 +146,25 @@ angular.module('ba.controllers').controller('mnMainCtrl', ['$scope', '$translate
                 },
                 buttonClicked: function (index) {
                     if (index === 0) {
-                        $state.go('main.chart');
-                    }
-                    else if(index === 1) {
                         $state.go('main.grid');
+                    }
+                    else {
+                        var chartType = '';
+                        switch(index) {
+                            case 1:
+                                chartType = 'column';
+                                break;
+                            case 2:
+                                chartType = 'bar';
+                                break;
+                            case 3:
+                                chartType = 'line';
+                                break;
+                            default:
+                                chartType = 'column';
+                        }
+                        coreHighchartsConfig.options.chart.type = chartType;
+                        $state.go('main.chart');
                     }
                 }
             });

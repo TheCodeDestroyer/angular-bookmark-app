@@ -42,7 +42,9 @@
     },
     "action_sheet": {
         "SHOW_GRID": "Show Grid",
-        "SHOW_CHART": "Show Chart"
+        "SHOW_COLUMN_CHART": "Show Column Chart",
+        "SHOW_BAR_CHART": "Show Bar Chart",
+        "SHOW_LINE_CHART": "Show Line Chart"
     },
     "settings":{
         "SAVE": "Save",

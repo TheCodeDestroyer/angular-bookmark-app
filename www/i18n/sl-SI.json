@@ -41,7 +41,9 @@
     },
     "action_sheet": {
         "SHOW_GRID": "Prikaži Tabelo",
-        "SHOW_CHART": "Prikaži Graf"
+        "SHOW_COLUMN_CHART": "Prikaži Stolpčev Graf",
+        "SHOW_BAR_CHART": "Show Vrstični Chart",
+        "SHOW_LINE_CHART": "Show Linijski Chart"
     },
     "settings":{
         "SAVE": "Shrani",
