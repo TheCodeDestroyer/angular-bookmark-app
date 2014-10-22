@@ -4,7 +4,7 @@ angular.module('ba.controllers').controller('mnMainCtrl', ['$scope', '$translate
         'use strict';
 
         $scope.viewTitle = $translate.instant('home.TITLE');
-        var gridFlexibleHeightPlugin = new ngGridFlexibleHeightPlugin();
+        var gridFlexibleHeightPlugin = new window.ngGridFlexibleHeightPlugin();
         $scope.bookmarkItems = [];
         $scope.gridData = {};
         $scope.columns = [];
@@ -47,7 +47,7 @@ angular.module('ba.controllers').controller('mnMainCtrl', ['$scope', '$translate
 
             cmnIonicHelpersSvc.showLoading();
 
-            mnBookmarkSvc.setBookmark(bookmarkId).then(function(reponse) {
+            mnBookmarkSvc.setBookmark(bookmarkId).then(function (reponse) {
                 var valid = reponse.data.valid;
                 if (!valid) {
                     cmnIonicHelpersSvc.hideLoading();
@@ -55,7 +55,7 @@ angular.module('ba.controllers').controller('mnMainCtrl', ['$scope', '$translate
 
                 }
                 else {
-                    mnBookmarkSvc.getBookMarkModel().then(function(response){
+                    mnBookmarkSvc.getBookMarkModel().then(function (response) {
                         var gridModel = cmnParseDataSvc.parseBookmarkModel(response.data);
                         if (gridModel) {
                             setupGridAndChart(gridModel);
@@ -64,9 +64,9 @@ angular.module('ba.controllers').controller('mnMainCtrl', ['$scope', '$translate
                             cmnIonicHelpersSvc.alert($translate.instant('general.WARNING_TITLE'), $translate.instant('home.BOOKMARK_DATA_ERROR'));
                             cmnIonicHelpersSvc.hideLoading();
                         }
-                    })
+                    });
                 }
-            })
+            });
         };
 
         function setupGridAndChart(gridModel) {
@@ -125,7 +125,7 @@ angular.module('ba.controllers').controller('mnMainCtrl', ['$scope', '$translate
             confirmPopup.then(function () {
                 cmnAuthenticationSvc.logout().then(function () {
                     $state.go('login');
-                })
+                });
             });
         };
 

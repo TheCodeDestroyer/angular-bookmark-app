@@ -16,7 +16,7 @@ angular.module('ba.services').service('cmnParseDataSvc', function () {
                 loopItems(bookmarkArray, bookmark);
             }
             else {
-                bookmarkArray.push({ id: bookmark.serverId, displayName: bookmark.name, parent: false})
+                bookmarkArray.push({ id: bookmark.serverId, displayName: bookmark.name, parent: false});
             }
             if (callback && i === item.items.length - 1){
                 callback(bookmarkArray);
@@ -25,7 +25,9 @@ angular.module('ba.services').service('cmnParseDataSvc', function () {
     }
 
     function parseBookmarkModel(model){
-        if (model.rows.length <= 0) return undefined;
+        if (model.rows.length <= 0) {
+            return undefined;
+        }
 
         var columns = [];
         var columnModel = model.rows.shift();
@@ -41,9 +43,9 @@ angular.module('ba.services').service('cmnParseDataSvc', function () {
             var cellData = {};
             for (var k = 0; k < rowDataModel.length; k++ ) {
                 var cellModel = rowDataModel[k];
-                cellData["cell" + k] = cellModel.stringValue;
+                cellData['cell' + k] = cellModel.stringValue;
             }
-            rowData.push(cellData)
+            rowData.push(cellData);
         }
 
         return {columnModel: columns, data: rowData};

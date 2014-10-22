@@ -32,9 +32,8 @@ angular.module('ba.services').factory('cmnAuthenticationSvc', ['$http', 'cmnSess
 
         return $http
             .delete(apiUrl + '/login', { headers: { 'Authorization': cmnSessionSvc.sessionId }})
-            .then(function (response) {
-                var userData = response.data;
-                cmnSessionSvc.create(userData.accountId, userData.username, userData.sessionId );
+            .then(function () {
+                cmnSessionSvc.destroy();
             });
     }
 

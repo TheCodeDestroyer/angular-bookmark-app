@@ -94,3 +94,4 @@ node_modules/*
 bower_components/*
 phonegap/*
 www/lib/*
+www/js/build/

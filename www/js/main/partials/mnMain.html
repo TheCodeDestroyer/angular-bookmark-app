@@ -1,5 +1,5 @@
 <ion-side-menus>
-    <ion-side-menu-content edge-drag-threshold="1">
+    <ion-side-menu-content>
         <ion-nav-bar class="bar-dark" animation="no-animation">
             <ion-nav-back-button class="button-icon ion-arrow-left-c">
             </ion-nav-back-button>
@@ -25,7 +25,7 @@
         </ion-header-bar>
         <ion-content>
             <div class="list ba-list">
-                <a ng-repeat="bookmark in bookmarkItems" ng-class="checkIfParent(bookmark)" class="item" ng-click="setBookmark(bookmark.id)">
+                <a menu-close ng-repeat="bookmark in bookmarkItems" ng-class="checkIfParent(bookmark)" class="item" ng-click="setBookmark(bookmark.id)">
                     {{ bookmark.displayName }}
                 </a>
             </div>

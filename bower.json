@@ -17,7 +17,6 @@
   ],
   "dependencies": {
     "angular": "~1.3.0",
-    "kendo-ui-core": "~2014.2.903",
     "angular-translate": "~2.4.1",
     "angular-translate-storage-local": "~2.4.1",
     "angular-translate-storage-cookie": "~2.4.1",
