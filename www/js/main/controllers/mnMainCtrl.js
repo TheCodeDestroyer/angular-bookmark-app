@@ -132,7 +132,7 @@ angular.module('ba.controllers').controller('mnMainCtrl', ['$scope', '$translate
         $scope.showActionSheet = function () {
 
             // Show the action sheet
-            $ionicActionSheet.show({
+            var hideSheet = $ionicActionSheet.show({
                 buttons: [
                     { text: $translate.instant('action_sheet.SHOW_GRID') },
                     { text: $translate.instant('action_sheet.SHOW_COLUMN_CHART') },
@@ -163,9 +163,11 @@ angular.module('ba.controllers').controller('mnMainCtrl', ['$scope', '$translate
                             default:
                                 chartType = 'column';
                         }
+
                         coreHighchartsConfig.options.chart.type = chartType;
                         $state.go('main.chart');
                     }
+                    hideSheet();
                 }
             });
         };
