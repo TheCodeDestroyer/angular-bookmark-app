@@ -31,7 +31,7 @@ angular.module('ba.services').service('cmnParseDataSvc', function () {
         var columnModel = model.rows.shift();
         for (var i = 0; i < columnModel.length; i++ ) {
             var column = columnModel[i];
-            columns.push({displayName: column.stringValue, field: 'cell' + i, width: 250 });
+            columns.push({displayName: column.stringValue, field: 'cell' + i, width: (100 / columnModel.length) + '%'  });
         }
 
         var rowData = [];

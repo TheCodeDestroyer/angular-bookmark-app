@@ -37,7 +37,11 @@ angular.module('ba.controllers').controller('setApplicationCtrl', ['$scope', '$t
         $scope.saveSettings = function () {
             $translate.use($scope.setAppModel.selectedLanguage);
             cmnSettingsSvc.save($scope.setAppModel.userSettings);
-            $state.go('main.grid');
+            $state.go('login');
+        };
+
+        $scope.cancel = function () {
+            $state.go('login');
         };
 
         $scope.setAppModel.selectedLanguage = $scope.languages.filter(function (object) {

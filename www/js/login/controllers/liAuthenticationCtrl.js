@@ -1,6 +1,6 @@
 angular.module('ba.controllers')
-    .controller('liAuthenticationCtrl', ['$scope', '$translate', 'cmnAuthenticationSvc', '$localStorage', '$cordovaToast', '$state',
-        function($scope, $translate, cmnAuthenticationSvc, $localStorage, $cordovaToast, $state) {
+    .controller('liAuthenticationCtrl', ['$scope', '$translate', 'cmnAuthenticationSvc', 'cmnIonicHelpersSvc', '$localStorage', '$cordovaToast', '$state',
+        function($scope, $translate, cmnAuthenticationSvc, cmnIonicHelpersSvc, $localStorage, $cordovaToast, $state) {
             'use strict';
 
             $scope.viewTitle = $translate.instant('login.TITLE');
@@ -19,26 +19,32 @@ angular.module('ba.controllers')
 
             $scope.login = function (user) {
 
+                cmnIonicHelpersSvc.showLoading();
                 $localStorage.cachedCredentials.username = user.username;
                 $localStorage.cachedCredentials.warehouseCode = user.warehouseCode;
                 var loginPromise = cmnAuthenticationSvc.login(user);
                 if (!loginPromise) {
-                    if (window.device) {
-                        $cordovaToast.show('You need to enter API URL before you can log in.', 'long', 'center');
-                    }
+                    cmnIonicHelpersSvc.hideLoading();
+                    cmnIonicHelpersSvc.alert($translate.instant('general.ERROR_TITLE'), $translate.instant('login.API_ERROR'));
                     return;
                 }
                 loginPromise.then(function () {
+                    cmnIonicHelpersSvc.hideLoading();
                     $state.go('main.grid');
                 }, function () {
-                    if (window.device) {
-                        $cordovaToast.show('Something went wrong during log in. Please try again in few moments.', 'long', 'center');
-                    }
+                    cmnIonicHelpersSvc.hideLoading();
+                    cmnIonicHelpersSvc.alert($translate.instant('general.ERROR_TITLE'), $translate.instant('general.ERROR_MESSAGE'));
                 });
             };
 
             $scope.settings = function () {
                 $state.go('liApplicationSettings');
+            };
+
+            $scope.close = function () {
+                if (window.Cordova) {
+                    navigator.app.exitApp();
+                }
             };
 
             $scope.isUnchanged = function(user) {

@@ -1,7 +1,7 @@
 ﻿{
-    "general":
-    {
+    "general": {
         "OK": "OK",
+        "YES": "Yes",
         "CANCEL": "Cancel",
         "BACK": "Back",
         "SELECT": "Select",
@@ -10,6 +10,8 @@
         "OPEN": "Open",
         "SEARCH": "Search",
         "CLEAR": "Clear",
+        "LOADING": "Loading...",
+        "WARNING_TITLE": "Warning",
         "ERROR_TITLE": "Error",
         "ERROR_MESSAGE": "There was an error. Please contact technical support.",
         "languages":{
@@ -17,27 +19,35 @@
             "SLOVENIAN": "Slovenian"
         }
     },
-    "home":{
-        "TITLE": "Home"
+    "home": {
+        "TITLE": "Home",
+        "BOOKMARK_DATA_ERROR": "This bookmark has no data, please choose a different one.",
+        "BOOKMARK_VALID_ERROR": "This is not a valid bookmark, please choose a different one."
     },
-    "login":{
+    "login": {
         "TITLE": "Log In",
         "LOGIN": "Log In",
+        "LOGOUT": "Log out",
+        "LOGOUT_TEXT": "Are you sure you want to log out?",
         "SETTINGS": "Settings",
         "CLOSE": "Close",
         "USERNAME": "USERNAME",
         "PASSWORD": "PASSWORD",
-        "LOGIN_MESSAGE": "Please log in"
+        "LOGIN_MESSAGE": "Please log in",
+        "API_ERROR": "You need to enter API URL before you can log in."
 
     },
     "sideMenu": {
       "TITLE": "Bookmarks"
     },
+    "action_sheet": {
+        "SHOW_GRID": "Show Grid",
+        "SHOW_CHART": "Show Chart"
+    },
     "settings":{
         "SAVE": "Save",
         "CANCEL": "Cancel",
         "LANGUAGE": "Language",
-        "LOGOUT": "Log out",
         "application": {
             "TITLE": "Application settings"
         }

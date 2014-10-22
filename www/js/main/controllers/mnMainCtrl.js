@@ -1,12 +1,13 @@
-angular.module('ba.controllers').controller('mnMainCtrl', ['$scope', '$translate', '$state', 'mnBookmarkSvc', 'cmnParseDataSvc', '$ionicSideMenuDelegate', '$cordovaToast', '$ionicActionSheet',
-    function($scope, $translate, $state, mnBookmarkSvc, cmnParseDataSvc, $ionicSideMenuDelegate, $cordovaToast, $ionicActionSheet) {
+angular.module('ba.controllers').controller('mnMainCtrl', ['$scope', '$translate', '$state', 'mnBookmarkSvc', 'cmnIonicHelpersSvc', 'cmnParseDataSvc', 'cmnAuthenticationSvc',
+    '$ionicSideMenuDelegate', '$cordovaToast', '$ionicActionSheet',
+    function($scope, $translate, $state, mnBookmarkSvc, cmnIonicHelpersSvc, cmnParseDataSvc, cmnAuthenticationSvc, $ionicSideMenuDelegate, $cordovaToast, $ionicActionSheet) {
         'use strict';
 
         $scope.viewTitle = $translate.instant('home.TITLE');
         var gridFlexibleHeightPlugin = new ngGridFlexibleHeightPlugin();
         $scope.bookmarkItems = [];
         $scope.gridData = {};
-        $scope.columns = {};
+        $scope.columns = [];
         $scope.gridOptions = {
             data: 'gridData',
             multiSelect: false,
@@ -32,54 +33,36 @@ angular.module('ba.controllers').controller('mnMainCtrl', ['$scope', '$translate
             }
         };
 
-        var bookmarkPromise = mnBookmarkSvc.getBookmarks();
-        if (!bookmarkPromise) {
-            if (window.device) {
-                $cordovaToast.show('', 'long', 'center');
-            }
-            return;
-        }
-        bookmarkPromise.then(function (response) {
+        mnBookmarkSvc.getBookmarks().then(function (response) {
             cmnParseDataSvc.parseBookmarkList(response.data, function (parsedData){
                 $scope.bookmarkItems = parsedData;
-                $scope.setBookmark(parsedData[4].id);
+                $scope.setBookmark(parsedData[6].id);
             });
-        }, function () {
-            if (window.device) {
-                $cordovaToast.show('', 'long', 'center');
-            }
         });
 
         $scope.setBookmark = function (bookmarkId) {
-            if (!bookmarkId) return false;
-
-            var setBookmarkPromise = mnBookmarkSvc.setBookmark(bookmarkId);
-            if (!setBookmarkPromise) {
-                if (window.device) {
-                    $cordovaToast.show('', 'long', 'center');
-                }
+            if (!bookmarkId){
                 return false;
             }
 
-            setBookmarkPromise.then(function(reponse) {
+            cmnIonicHelpersSvc.showLoading();
+
+            mnBookmarkSvc.setBookmark(bookmarkId).then(function(reponse) {
                 var valid = reponse.data.valid;
                 if (!valid) {
-                    if (window.device) {
-                        $cordovaToast.show('This is not a valid bookmark.', 'long', 'center');
-                    }
+                    cmnIonicHelpersSvc.hideLoading();
+                    cmnIonicHelpersSvc.alert($translate.instant('general.WARNING_TITLE'), $translate.instant('home.BOOKMARK_VALID_ERROR'));
+
                 }
                 else {
-                    var bookmarkModelPromise = mnBookmarkSvc.getBookMarkModel();
-                    if (!bookmarkModelPromise) {
-                        if (window.device) {
-                            $cordovaToast.show('', 'long', 'center');
-                        }
-                        return false;
-                    }
-                    bookmarkModelPromise.then(function(response){
+                    mnBookmarkSvc.getBookMarkModel().then(function(response){
                         var gridModel = cmnParseDataSvc.parseBookmarkModel(response.data);
                         if (gridModel) {
                             setupGridAndChart(gridModel);
+                        }
+                        else {
+                            cmnIonicHelpersSvc.alert($translate.instant('general.WARNING_TITLE'), $translate.instant('home.BOOKMARK_DATA_ERROR'));
+                            cmnIonicHelpersSvc.hideLoading();
                         }
                     })
                 }
@@ -122,6 +105,8 @@ angular.module('ba.controllers').controller('mnMainCtrl', ['$scope', '$translate
 
             $scope.highchartsConfig = config;
 
+            cmnIonicHelpersSvc.hideLoading();
+
             if(!$scope.$$phase) {
                 $scope.$apply();
             }
@@ -135,13 +120,22 @@ angular.module('ba.controllers').controller('mnMainCtrl', ['$scope', '$translate
             $ionicSideMenuDelegate.toggleLeft();
         };
 
+        $scope.logout = function () {
+            var confirmPopup = cmnIonicHelpersSvc.confirm($translate.instant('login.LOGOUT'), $translate.instant('login.LOGOUT_TEXT'));
+            confirmPopup.then(function () {
+                cmnAuthenticationSvc.logout().then(function () {
+                    $state.go('login');
+                })
+            });
+        };
+
         $scope.showActionSheet = function () {
 
             // Show the action sheet
             $ionicActionSheet.show({
                 buttons: [
-                    { text: 'Show Chart' },
-                    { text: 'Show Grid' }
+                    { text: $translate.instant('action_sheet.SHOW_CHART') },
+                    { text: $translate.instant('action_sheet.SHOW_GRID') }
                 ],
                 titleText: 'Actions',
                 cancelText: 'Cancel',
@@ -149,15 +143,14 @@ angular.module('ba.controllers').controller('mnMainCtrl', ['$scope', '$translate
                     // add cancel code..
                 },
                 buttonClicked: function (index) {
-                    if (this.buttons[index].text === "Show Chart") {
+                    if (index === 0) {
                         $state.go('main.chart');
                     }
-                    else if(this.buttons[index].text === "Show Grid") {
+                    else if(index === 1) {
                         $state.go('main.grid');
                     }
                 }
             });
         };
-
     }
 ]);

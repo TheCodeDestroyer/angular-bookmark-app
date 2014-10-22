@@ -30,13 +30,14 @@ select option {
 	color: #FFF;
 }
 
-.popup {
-	background: #000;
+.popup-body {
+	overflow: auto;
 }
 
-.popup-title, .popup-sub-title {
-	color: #FFF;
+.popup-container .popup {
+	color: #000;
 }
+
 
 ion-content input[disabled] {
 	background-color: transparent;
@@ -62,9 +63,15 @@ ion-content {
 	height: 100%;
 }
 
-/*.ngViewport {*/
-	/*min-height: 400px;*/
-/*}*/
+.ngViewport{
+	height:auto !important;
+}
+.ngCanvas, .ngViewport, .ngRow, .ngFooterPanel, .ngTopPanel   {
+	width: 100% !important;
+}
+.ngRow {
+	border-bottom:none !important;
+}
 
 .ngHeaderContainer, .ngGroupPanel {
 	background-color: #000;
@@ -103,16 +110,17 @@ ion-content {
 
 .ngHeaderButton {
 	background-color: #33b5e5;
-	width: 24px;
-	height: 24px;
-	right: 2px;
-	top: 2px;
+	width: 28px;
+	height: 28px;
+	right: 10px;
+	top: 0;
 }
 
 .ngHeaderButtonArrow {
 	border-color: #000 transparent transparent transparent;
-	border-width: 13px 9px 0 9px;
-	top: 6px;
+	border-width: 17px 13px 0 13px;
+	top: 8px;
+	left: 1px;
 }
 
 .ngColMenu {

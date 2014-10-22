@@ -2,6 +2,7 @@
     "general":
     {
         "OK": "OK",
+        "YES": "Da",
         "CANCEL": "Prekliči",
         "BACK": "Nazaj",
         "SELECT": "Select",
@@ -10,6 +11,8 @@
         "OPEN": "Odpri",
         "SEARCH": "Išči",
         "CLEAR": "Zbriši",
+        "LOADING": "Nalaganje v teku...",
+        "WARNING_TITLE": "Opozorilo",
         "ERROR_TITLE": "Napaka",
         "ERROR_MESSAGE": "Zgodila se je napaka. Prosim kontaktiraj tehnično pomoč.",
         "languages":{
@@ -17,9 +20,16 @@
             "SLOVENIAN": "slovensko"
         }
     },
+    "home":{
+        "TITLE": "Začetna stran",
+        "BOOKMARK_DATA_ERROR": "Ta zaznamek nima podatkov, prosim izberi drugega.",
+        "BOOKMARK_VALID_ERROR": "Ta zaznamek ni veljaven, prosim izberi drugega."
+    },
     "login":{
         "TITLE": "Prijava",
         "LOGIN": "Prijavi se",
+        "LOGOUT": "Odjava",
+        "LOGOUT_TEXT": "Ali ste prepričani, da se želite odjaviti?",
         "SETTINGS": "Nastavitve",
         "CLOSE": "Zapri",
         "USERNAME": "UPORABNIŠKO IME",
@@ -29,11 +39,14 @@
     "sideMenu": {
         "TITLE": "Zaznamki"
     },
+    "action_sheet": {
+        "SHOW_GRID": "Prikaži Tabelo",
+        "SHOW_CHART": "Prikaži Graf"
+    },
     "settings":{
         "SAVE": "Shrani",
         "CANCEL": "Prekliči",
         "LANGUAGE": "Jezik",
-        "LOGOUT": "Odjava",
         "application": {
             "TITLE": "Nastavitve aplikacije"
         }
